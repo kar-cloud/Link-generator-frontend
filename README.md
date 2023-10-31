@@ -6,7 +6,17 @@ You can find backend for this application through this repository: [Backend](htt
 <br>
 The project has been deployed on Vercel: [Link](https://link-generator-frontend.vercel.app/)
 
-## Available Scripts
+## Installation Locally Steps
+
+Pre-requisite of this project is to have npm installed on your system.
+<br>
+### `git clone https://github.com/kar-cloud/Link-generator-frontend.git`
+### `npm install`
+Inside /src/Constants.js, comment this line 
+export const BASE_URL = "https://karanmann.pythonanywhere.com/";
+Uncomment this line
+export const BASE_URL = "http://localhost:8000/";
+### `npm run start`
 
 In the project directory, you can run:
 
