@@ -12,6 +12,10 @@ Pre-requisite of this project is to have npm installed on your system.
 <br>
 ### `git clone https://github.com/kar-cloud/Link-generator-frontend.git`
 ### `npm install`
-Inside /src/Constants.js, comment this line: export const BASE_URL = "https://karanmann.pythonanywhere.com/";
-Uncomment this line: export const BASE_URL = "http://localhost:8000/";
+Inside /src/Constants.js:
+<br>
+a. Comment this line: export const BASE_URL = "https://karanmann.pythonanywhere.com/"
+<br>
+b. Uncomment this line: export const BASE_URL = "http://localhost:8000/"
+<br>
 ### `npm run start`
