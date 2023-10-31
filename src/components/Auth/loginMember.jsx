@@ -2,7 +2,7 @@ import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL, API_ENDPOINT_LOGIN_MEMBER } from "../../Constants";
-import AuthError from "./authError";
+import Message from "../Home/message";
 import { verifyToken } from "../../Services";
 
 const LoginMember = () => {
@@ -67,7 +67,7 @@ const LoginMember = () => {
       <h1 className="loginHeading">Login</h1>
       <form onSubmit={handleLogin}>
         <div className="registrationForm">
-          {error ? <AuthError error={error} /> : null}
+          {error ? <Message message={error} /> : null}
           <label className="registrationLabel" htmlFor="emailInput">
             Email
           </label>

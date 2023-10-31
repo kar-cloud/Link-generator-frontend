@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { verifyToken } from "../../Services";
 import { BASE_URL, API_ENDPOINT_USER_LINK } from "../../Constants";
 import LinkCard from "./linkCard";
+import Message from "./message";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Home = () => {
     description: "",
     file: null,
   });
+  const [message, setMessage] = useState(null);
 
   const getUserLinks = async (token) => {
     try {
@@ -64,24 +66,36 @@ const Home = () => {
 
   const handleUpload = async (event) => {
     event.preventDefault();
-    console.log(fileDetails);
-    const token = localStorage.getItem("token");
-    try {
-      const response = await axios.post(
-        BASE_URL + API_ENDPOINT_USER_LINK,
-        fileDetails,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-type": "multipart/form-data",
-          },
+    if (!fileDetails.description) {
+      setMessage("Description is missing");
+      setTimeout(() => {
+        setMessage(null);
+      }, 2500);
+    } else if (!fileDetails.file) {
+      setMessage("File is missing");
+      setTimeout(() => {
+        setMessage(null);
+      }, 2500);
+    } else {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.post(
+          BASE_URL + API_ENDPOINT_USER_LINK,
+          fileDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "content-type": "multipart/form-data",
+            },
+          }
+        );
+        if (response && response.status == 201) {
+          setLinks([response.data, ...links])
+          setMessage("URL: " + response.data.link)
         }
-      );
-      if (response && response.status == 201) {
-        window.location.reload();
+      } catch (err) {
+        console.log("ERROR ==> ", err);
       }
-    } catch (err) {
-      console.log("ERROR ==> ", err);
     }
   };
 
@@ -89,6 +103,7 @@ const Home = () => {
     <div>
       <div className="homeContainer">
         <div className="uploadFile">
+          {message ? <Message message={message} /> : null}
           <div className="fileInputBox" style={{ cursor: "default" }}>
             <input
               id="inputUpload"
@@ -123,7 +138,6 @@ const Home = () => {
             className="uploadButton"
             onClick={(event) => {
               handleUpload(event);
-              // window.location.reload();
             }}
           >
             <p>Upload</p>

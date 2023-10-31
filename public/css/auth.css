@@ -81,7 +81,7 @@
   }
 }
 
-.errorMessageContainer {
+.messageContainer {
   background-color: #ffcccc;
   width: 100%;
   border-radius: 4px;
@@ -89,7 +89,7 @@
   margin-bottom: 5px;
 }
 
-.errorMessageDescription {
+.messageDescription {
   font-size: 1.35rem;
   font-family: "Source Sans Pro", sans-serif;
   padding: 7px;
