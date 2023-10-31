@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Link Generator - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend of this application has been built using React.
+You can find backend for this application through this repository: [Backend](https://github.com/kar-cloud/link-generator)
+The project has been deployed on Vercel: [Link](https://link-generator-frontend.vercel.app/)
 
 ## Available Scripts
 
