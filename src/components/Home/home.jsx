@@ -90,8 +90,9 @@ const Home = () => {
           }
         );
         if (response && response.status == 201) {
-          setLinks([response.data, ...links])
-          setMessage("URL: " + response.data.link)
+          setLinks([response.data, ...links]);
+          setSelectedLink(response.data);
+          setMessage("URL: " + response.data.link);
         }
       } catch (err) {
         console.log("ERROR ==> ", err);
