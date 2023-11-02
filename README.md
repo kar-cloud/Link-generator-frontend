@@ -2,7 +2,7 @@
 
 The frontend of this application has been built using React.
 <br>
-You can find backend for this application through this repository: [Backend](https://github.com/kar-cloud/link-generator)
+You can find backend for this application through this repository: [Backend](https://github.com/kar-cloud/link-generator/)
 <br>
 The project has been deployed on Vercel: [Link](https://link-generator-frontend.vercel.app/)
 
