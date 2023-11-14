@@ -85,7 +85,7 @@ body {
   width: 45%;
   margin: auto;
   background-color: rgba(110, 42, 205, 1);
-  height: 40px;
+  height: 36px;
   font-size: 1rem;
   border-radius: 4px;
   margin-left: 10px;
@@ -112,4 +112,10 @@ body {
   margin: auto;
   text-decoration: underline;
   padding-top: 5%;
+}
+
+.downloadButton {
+  display: block;
+  width: 120px;
+  height: 33px;
 }

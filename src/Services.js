@@ -27,12 +27,11 @@ export const formatDate = (dateString) => {
   return formattedDate;
 };
 
-export const downloadFile = (url) => {
-  console.log(url);
+export const downloadFile = (url, fileName = null) => {
   fetch(url)
     .then((response) => response.blob())
     .then((blob) => {
-      const filename = getFileNameFromUrl(url);
+      const filename = fileName || getFileNameFromUrl(url);
       const objectURL = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");
       link.href = objectURL;

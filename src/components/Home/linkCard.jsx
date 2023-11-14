@@ -30,6 +30,30 @@ const LinkCard = ({ selectedLink }) => {
       <p>{formatDate(selectedLink.created_at)}</p>
       <p className="rightContainerLabels">Description:</p>
       <p>{selectedLink.description}</p>
+      <p className="rightContainerLabels">Analytics:</p>
+      <span>No of clicks - {selectedLink.analytics.no_of_clicks}</span>
+      <br />
+      <span>
+        No of unique viewers - {selectedLink.analytics.no_of_unique_viewers}
+      </span>
+      <br />
+      <br />
+      <p className="rightContainerLabels">QR Code:</p>
+      <img
+        src={selectedLink.qr_code}
+        height={120}
+        width={120}
+        style={{ display: "inline-block" }}
+      />
+      <button
+        className="downloadButton"
+        onClick={() => {
+          downloadFile(selectedLink.qr_code, "QR.png");
+        }}
+      >
+        <p>Download QR</p>
+      </button>
+      <br />
       <p className="rightContainerLabels">File Path:</p>
       <a href={selectedLink.file}>
         <h6 className="rightContainerFilePath">{selectedLink.file}</h6>
@@ -41,7 +65,7 @@ const LinkCard = ({ selectedLink }) => {
           downloadFile(selectedLink.file);
         }}
       >
-        <p>Download</p>
+        <p>Download File</p>
       </button>
       <button
         className="rightContainerButtons"
