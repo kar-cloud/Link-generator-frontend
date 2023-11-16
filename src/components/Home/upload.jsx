@@ -135,7 +135,7 @@ const Upload = ({ links, setLinks, setSelectedLink }) => {
         {member ? (
           <div className="inputURLContainer">
             <div className="inputFixedContentURL">
-              <p className="inputContent">{`${BASE_URL}/${member.username}/`}</p>
+              <p className="inputContent">{`${BASE_URL}${member.username}/`}</p>
             </div>
             <div className="inputURL">
               <input
