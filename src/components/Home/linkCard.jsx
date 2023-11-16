@@ -1,7 +1,11 @@
 import { formatDate, downloadFile } from "../../Services";
 import axios from "axios";
 import { React } from "react";
-import { BASE_URL, API_ENDPOINT_USER_LINK } from "../../Constants";
+import {
+  BASE_URL,
+  API_ENDPOINT_USER_LINK,
+  WHATSAPP_URL,
+} from "../../Constants";
 
 const LinkCard = ({ selectedLink }) => {
   const handleDelete = async () => {
@@ -17,6 +21,12 @@ const LinkCard = ({ selectedLink }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const createWhatsappURL = (link) => {
+    const whatsappMessage = `Come and check out this link:%0A${link.link}%0A%0ADescription - ${link.description}`;
+    const url = `${WHATSAPP_URL}?text=${whatsappMessage}`;
+    return url;
   };
 
   return (
@@ -59,6 +69,13 @@ const LinkCard = ({ selectedLink }) => {
         <h6 className="rightContainerFilePath">{selectedLink.file}</h6>
       </a>
       <hr className="rightContainerLine" />
+      <a
+        href={createWhatsappURL(selectedLink)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="shareButton">Share on WhatsApp</button>
+      </a>
       <button
         className="rightContainerButtons"
         onClick={() => {

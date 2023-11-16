@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Message from "./message";
 import axios from "axios";
-import { BASE_URL, API_ENDPOINT_USER_LINK } from "../../Constants";
-import Navbar from "./navbar";
+import {
+  BASE_URL,
+  API_ENDPOINT_USER_LINK,
+  API_ENDPOINT_USER_DETAILS,
+} from "../../Constants";
 
 const Upload = ({ links, setLinks, setSelectedLink }) => {
+  useEffect(() => {
+    const getUserDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(BASE_URL + API_ENDPOINT_USER_DETAILS, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.status == 200 && response.data) {
+          setMember(response.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUserDetails();
+  }, []);
+
   const [fileDetails, setFileDetails] = useState({
     description: "",
     file: null,
+    custom_url: null,
   });
   const [message, setMessage] = useState(null);
+  const [member, setMember] = useState(null);
 
   const handleInputFile = (event) => {
     setFileDetails((prev) => ({
@@ -22,6 +46,13 @@ const Upload = ({ links, setLinks, setSelectedLink }) => {
     setFileDetails((prev) => ({
       ...prev,
       description: event.target.value,
+    }));
+  };
+
+  const handleCustomInputURL = (event) => {
+    setFileDetails((prev) => ({
+      ...prev,
+      custom_url: event.target.value,
     }));
   };
 
@@ -61,6 +92,7 @@ const Upload = ({ links, setLinks, setSelectedLink }) => {
       setFileDetails({
         description: "",
         file: null,
+        custom_url: null,
       });
     }
   };
@@ -90,7 +122,7 @@ const Upload = ({ links, setLinks, setSelectedLink }) => {
         </div>
         <div>
           <textarea
-            id="passwordInput"
+            id="fileDescription"
             type="text"
             className="fileInputDescription"
             name="password"
@@ -100,6 +132,22 @@ const Upload = ({ links, setLinks, setSelectedLink }) => {
             required
           />
         </div>
+        {member ? (
+          <div className="inputURLContainer">
+            <div className="inputFixedContentURL">
+              <p className="inputContent">{`${window.location.origin}/${member.username}/`}</p>
+            </div>
+            <div className="inputURL">
+              <input
+                className="inputURLInput"
+                type="text"
+                placeholder="Enter URL (Separate words using hyphen)"
+                maxLength={30}
+                onChange={handleCustomInputURL}
+              />
+            </div>
+          </div>
+        ) : null}
         <button
           className="uploadButton"
           onClick={(event) => {
