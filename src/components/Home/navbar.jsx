@@ -39,6 +39,19 @@ const Navbar = () => {
         </li>
         <li>
           <Link
+            to={"/generate"}
+            className={
+              activeLink == "generate" ? "navbarLink activeLink" : "navbarLink"
+            }
+            onClick={() => {
+              handleLinkClick("generate");
+            }}
+          >
+            Generate
+          </Link>
+        </li>
+        <li>
+          <Link
             to={"/"}
             className={
               activeLink == "logout" ? "navbarLink activeLink" : "navbarLink"

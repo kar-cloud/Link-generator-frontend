@@ -7,6 +7,7 @@ import LinkCard from "./linkCard";
 import Navbar from "./navbar";
 import Links from "./links";
 import Upload from "./upload";
+import Generate from "./generate";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -52,6 +53,12 @@ const Home = () => {
       <Navbar />
       {window.location.pathname == "/upload" ? (
         <Upload
+          links={links}
+          setLinks={setLinks}
+          setSelectedLink={setSelectedLink}
+        />
+      ) : window.location.pathname == "/generate" ? (
+        <Generate
           links={links}
           setLinks={setLinks}
           setSelectedLink={setSelectedLink}
