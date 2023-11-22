@@ -66,7 +66,9 @@ const LinkCard = ({ selectedLink }) => {
       <br />
       <p className="rightContainerLabels">File Path:</p>
       <a href={selectedLink.file}>
-        <h6 className="rightContainerFilePath">{selectedLink.file}</h6>
+        <h6 className="rightContainerFilePath">
+          {selectedLink.file || selectedLink.pre_generated_url}
+        </h6>
       </a>
       <hr className="rightContainerLine" />
       <a
@@ -74,18 +76,22 @@ const LinkCard = ({ selectedLink }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <button className="shareButton">Share on WhatsApp</button>
+        <button className="shareButton whatsapp">Share on WhatsApp</button>
       </a>
+      {selectedLink.file ? (
+        <button
+          className="rightContainerButtons"
+          onClick={() => {
+            downloadFile(selectedLink.file);
+          }}
+        >
+          <p>Download File</p>
+        </button>
+      ) : null}
       <button
-        className="rightContainerButtons"
-        onClick={() => {
-          downloadFile(selectedLink.file);
-        }}
-      >
-        <p>Download File</p>
-      </button>
-      <button
-        className="rightContainerButtons"
+        className={
+          selectedLink.file ? "rightContainerButtons" : "shareButton deleteFile"
+        }
         onClick={() => {
           handleDelete();
           window.location.reload();
