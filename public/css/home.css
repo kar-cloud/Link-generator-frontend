@@ -140,5 +140,6 @@ body {
 }
 
 .deleteFile {
+  color: white;
   background-color: rgba(110, 42, 205, 1);
 }

@@ -65,7 +65,7 @@ const LinkCard = ({ selectedLink }) => {
       </button>
       <br />
       <p className="rightContainerLabels">File Path:</p>
-      <a href={selectedLink.file}>
+      <a href={selectedLink.file || selectedLink.pre_generated_url}>
         <h6 className="rightContainerFilePath">
           {selectedLink.file || selectedLink.pre_generated_url}
         </h6>
